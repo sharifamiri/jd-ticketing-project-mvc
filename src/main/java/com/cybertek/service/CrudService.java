@@ -9,4 +9,5 @@ public interface CrudService<T,ID> {
     List<T> findAll();
     void delete(T user);
     void deleteByID(ID id);
+    void update(T object);
 }
