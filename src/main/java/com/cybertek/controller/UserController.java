@@ -23,6 +23,7 @@ public class UserController {
     @GetMapping({"/create"})
     public String createUser(Model model){
 
+        //need: user, roles. and users
         model.addAttribute("user", new UserDTO());
         model.addAttribute("roles",roleService.findAll());
         model.addAttribute("users",userService.findAll());
@@ -35,12 +36,11 @@ public class UserController {
 
         userService.save(user);
 
-        //need: user, roles. and users
-        model.addAttribute("user",new UserDTO());
-        model.addAttribute("roles",roleService.findAll());
-        model.addAttribute("users",userService.findAll());
+//        model.addAttribute("user",new UserDTO());
+//        model.addAttribute("roles",roleService.findAll());
+//        model.addAttribute("users",userService.findAll());
 
-        return "/user/create";
+        return "redirect:/user/create";
     }
 
     @GetMapping("/update/{username}")
@@ -57,12 +57,14 @@ public class UserController {
     public String updateUser(@PathVariable("username") String username, UserDTO user, Model model){
 
         userService.update(user);
-
-        model.addAttribute("user",new UserDTO());
-        model.addAttribute("roles",roleService.findAll());
-        model.addAttribute("users",userService.findAll());
-
-        return "/user/create";
+        return "redirect:/user/create";
     }
+
+    @GetMapping("/delete/{username}")
+    public String deleteUser(@PathVariable("username") String username){
+        userService.deleteByID(username);
+        return "redirect:/user/create";
+    }
+
 
 }
