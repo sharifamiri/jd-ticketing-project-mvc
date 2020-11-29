@@ -56,7 +56,7 @@
                                                 <div class="form-group">
                                                     <label>Assigned Manager</label>
                                                     <select th:field="*{assignedManager}" class="custom-select" required="required">
-                                                        <option value="''" th:text="Select"></option>
+                                                        <option th:value="''" th:text="Select"></option>
                                                         <option th:each="manager : ${managers}" th:value="${manager.username}" th:text="${manager.firstName + ' ' + manager.lastName}"></option>
                                                     </select>
                                                     <div class="invalid-feedback">Please choose manager</div>
@@ -67,13 +67,15 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Project Start Date</label>
-                                                    <input type="date" th:field="*{startDate}" class="form-control">
+                                                    <input type="date" th:field="*{startDate}" class="form-control" required="required">
+                                                    <div class="invalid-feedback">Please choose start date</div>
                                                 </div>
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Project End Date</label>
-                                                    <input type="date" th:field="*{endDate}" class="form-control">
+                                                    <input type="date" th:field="*{endDate}" class="form-control" required="required">
+                                                    <div class="invalid-feedback">Please choose end date</div>
                                                 </div>
                                             </div>
                                         </div>
